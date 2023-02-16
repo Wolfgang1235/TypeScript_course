@@ -72,7 +72,6 @@ function getWeather(coords) {
         const coords = await getLocation();
         const weather = await getWeather(coords);
         // 4.b
-        document.getElementById('weather').innerHTML = weather.main.temp;
         document.getElementById('weather').innerHTML = weather.main.temp + ' ' + weather.weather[0].description;
     } catch (e) {
         console.log(e);
