@@ -1,3 +1,4 @@
+import {Person} from "../part2";
 
 export function renderPeopleList(container: HTMLDivElement, people:Person[]) {
     container.innerHTML = ''; // clear container

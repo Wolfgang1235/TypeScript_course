@@ -1,4 +1,4 @@
-class Person {
+export class Person {
     public name: string;
     public age: number;
     public occupation: string;
@@ -38,5 +38,3 @@ console.log(ivan.age);
 ivan.setSalary(50000);
 console.log(ivan.getSalary());
 console.log(ivan.introduce());
-
-document.getElementById("root")!.innerHTML = ivan.name;

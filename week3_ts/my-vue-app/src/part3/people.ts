@@ -1,4 +1,5 @@
 import peopleList from './people.json';
+import {Person} from "../part2";
 
 export function getPeople(): Promise<Person[]> {
     const people: Person[] = [];
