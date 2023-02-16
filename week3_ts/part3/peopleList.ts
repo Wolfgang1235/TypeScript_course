@@ -1,9 +1,7 @@
-import {getPeople} from "./people";
 
-export async function renderPeopleList(container: HTMLBodyElement): Promise<Person[]> {
+export function renderPeopleList(container: HTMLDivElement, people:Person[]) {
     container.innerHTML = ''; // clear container
 
-    const people:Person[] = await getPeople()
 
     people.forEach((person: Person) => {
         const personElement = document.createElement('div');
@@ -31,6 +29,4 @@ export async function renderPeopleList(container: HTMLBodyElement): Promise<Pers
 
         container.appendChild(personElement);
     });
-
-    return people
 }

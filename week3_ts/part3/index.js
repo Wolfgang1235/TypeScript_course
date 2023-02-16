@@ -10,12 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const peopleList_1 = require("./peopleList");
+const people_1 = require("./people");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const container = document.querySelector('#container');
-        let people = [];
+        const people = yield (0, people_1.getPeople)();
         if (container) {
-            people = yield (0, peopleList_1.renderPeopleList)(container);
+            yield (0, peopleList_1.renderPeopleList)(container, people);
             console.log(people);
         }
         else
