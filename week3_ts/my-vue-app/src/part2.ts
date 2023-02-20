@@ -17,11 +17,11 @@ export class Person {
             this.salary+"$";
     }
 
-    incrementAge() {
+    incrementAge(): void {
         this.age = this.age+1;
     }
 
-    setSalary(salary: number) {
+    setSalary(salary: number): void {
         this.salary = salary;
     }
 
