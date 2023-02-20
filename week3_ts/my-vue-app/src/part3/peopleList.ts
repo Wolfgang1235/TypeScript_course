@@ -3,7 +3,6 @@ import {Person} from "../part2";
 export function renderPeopleList(container: HTMLDivElement, people:Person[]): void {
     container.innerHTML = ''; // clear container
 
-
     people.forEach((person: Person) => {
         const personElement = document.createElement('div');
         personElement.classList.add('person');
