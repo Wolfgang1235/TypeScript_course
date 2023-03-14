@@ -1,4 +1,4 @@
-[
+{"people":[
   {
     "id": "1",
     "name": "Ane",
@@ -29,4 +29,4 @@
     "age": 50,
     "city": "Frederikssund"
   }
-]
+]}

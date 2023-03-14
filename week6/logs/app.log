@@ -38,3 +38,7 @@
 [2023-03-14T10:26:39.141] [INFO] default - 2023-03-14T09:26:39.140Z GET /api/people {}
 [2023-03-14T10:26:47.865] [INFO] default - 2023-03-14T09:26:47.865Z GET /api/people {}
 [2023-03-14T10:31:52.473] [INFO] default - 2023-03-14T09:31:52.472Z GET /api/people {}
+[2023-03-14T10:35:09.789] [INFO] default - 2023-03-14T09:35:09.789Z GET /api/people {}
+[2023-03-14T10:35:10.906] [INFO] default - 2023-03-14T09:35:10.906Z GET /api/people {}
+[2023-03-14T10:42:43.732] [INFO] default - 2023-03-14T09:42:43.731Z GET /api/people {}
+[2023-03-14T10:42:44.071] [INFO] default - 2023-03-14T09:42:44.071Z GET /favicon.ico {}
