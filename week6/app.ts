@@ -69,7 +69,7 @@ app.post('/api/people', (req:Request,res:Response):void => {
         city
     };
     people.push(newPerson);
-    writeFileSync('./people.json',JSON.stringify(people,null,2));
+    writeFileSync('./people.json',JSON.stringify({people},null,2));
     res.status(201).json(newPerson);
 })
 
@@ -88,7 +88,7 @@ app.put('/api/people/:id', (req:Request, res:Response):void => {
         city: req.body.city
     };
     people[personIndex] = updatedPerson;
-    writeFileSync('./people.json', JSON.stringify(people,null,2));
+    writeFileSync('./people.json', JSON.stringify({people},null,2));
     res.status(200).json(updatedPerson);
 });
 
@@ -102,7 +102,7 @@ app.patch('/api/people/:id', (req:Request, res:Response):void => {
         return;
     };
     people[personIndex] = {...people[personIndex], ...updateData};
-    writeFileSync('./people.json', JSON.stringify(people,null,2));
+    writeFileSync('./people.json', JSON.stringify({people},null,2));
     res.status(200).json(people[personIndex]);
 })
 
@@ -113,7 +113,7 @@ app.delete('/api/people/:id', (req:Request, res:Response):void => {
         return
     };
     people.splice(personIndex,1);
-    writeFileSync('./people.json', JSON.stringify(people,null,2));
+    writeFileSync('./people.json', JSON.stringify({people},null,2));
     res.status(204).json(people);
 })
 
