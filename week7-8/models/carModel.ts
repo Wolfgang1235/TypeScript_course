@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const carSchema = new mongoose.Schema({
   model: {
     type: String,
-    required: [true, 'Needs a model'],
+    required: true,
     trim: true,
-    maxLength: [20, 'Needs to be under 21 characters'],
-    minLength: [5, 'Needs to be more than 4 characters'],
+    maxLength: 20,
+    minLength: 5,
   },
   year: Number,
   price: Number,

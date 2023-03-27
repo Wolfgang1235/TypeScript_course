@@ -52,7 +52,7 @@ export const updateCar = catchAsync(async(req:Request, res:Response, next:NextFu
 
     if (!updatedCar) {
         res.status(404).json ({
-            message: 'No such car to update'
+            error: 'No such car to update'
         })
     }
     res.status(200).json({
@@ -64,15 +64,10 @@ export const createCarReview = catchAsync(async (req:Request, res:Response, next
     const car = await Car.findById(req.params.id)
     if (!car) {
         return res.status(404).json ({
-            message: 'No such car'
+            error: 'No such car'
         })
     }
     const comment = req.body.comment;
-    if (!validator.isLength(comment, {min: 3, max: 200})) {
-        return res.status(400).json({
-            message: 'Comment needs to be between 3 and 200 characters'
-        });
-    }
     const review = new Review({'comment': comment});
     await review.save();
     car.reviews.push(review);
@@ -83,6 +78,13 @@ export const createCarReview = catchAsync(async (req:Request, res:Response, next
 })
 
 export const getCarReviewFromCarId = catchAsync(async (req:Request, res:Response, next:NextFunction) => {
-    const carId = req.params.id;
-    const car = await Car.findById(carId);
+    const car = await Car.findById(req.params.id).populate('reviews');
+    if (!car) {
+        return res.status(404).json ({
+            error: 'No such car'
+        })
+    }
+    res.status(200).json({
+        data: car.reviews.map((review:Review)=> review.comment)
+    })
 })
