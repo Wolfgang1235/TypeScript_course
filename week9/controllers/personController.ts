@@ -40,7 +40,7 @@ export const getPersonById = async (req:Request, res:Response) => {
 
 export const createPerson = async (req:Request, res:Response) => {
     try {
-        const newPerson:Person = await Person.create(req.body);
+        const newPerson = await Person.create(req.body);
         res.status(201)
             .json({
                 data:newPerson

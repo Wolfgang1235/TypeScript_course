@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-dotenv.config({path:'./config.env'})
+dotenv.config({path:'./.env'})
 import express = require('express');
 import {NextFunction, Request, Response} from "express";
 import AppError from "./utilities/appError";

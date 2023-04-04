@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-dotenv.config({path:'./config.env'});
+dotenv.config({path:'./.env'});
 import app from './app';
 import * as mongoose from 'mongoose';
 

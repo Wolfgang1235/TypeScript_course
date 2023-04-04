@@ -84,7 +84,7 @@ console.log(`🚀  Server ready at: ${url}`);
   "type": "module",
 ```
 8. Create a new file `src/graphql_schemas.ts` and add the type definitions for Book, Category and Query
-9. Create a resolver folder and add the following files: `book.ts`, `category.ts`, `mutation.ts`, `query.ts`
+9. Create a resolver folder and add the following files: `book.ts`, `category.ts`, `Mutation.ts`, `Query.ts`
 10. Add a new file: `data.ts` and add an array of books and categories.
 11. Run the project
 ```bash

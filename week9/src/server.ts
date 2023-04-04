@@ -3,7 +3,9 @@ dotenv.config({path:'./.env'});
 import * as mongoose from 'mongoose';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import Person from "../models/personModel";
+import typeDefs from "./graphql_schemas";
+import Query from "./resolvers/Query";
+import Mutation from "./resolvers/Mutation";
 
 const DB = process.env.DATABASE_DEV!.replace(
     '<PASSWORD>',
@@ -12,35 +14,12 @@ const DB = process.env.DATABASE_DEV!.replace(
 mongoose.connect(DB, {
 }).then(() => console.log('DB connection has succeed!'));
 
-export const typeDefs = `#graphql
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
- 
-  type Person {
-    id: ID!
-    name: String
-    age: Int
-    city: String
-  }  
-    
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
-  type Query {
-    people: [Person]
-  }
-`;
-
-const people = await Person.find()
-
-export const resolvers = {
-    Query: {
-        people: () => people,
-    },
-};
-
 const server = new ApolloServer({
     typeDefs,
-    resolvers,
+    resolvers: {
+        Query,
+        Mutation
+    },
 });
 
 const port = parseInt(process.env.PORT!);
