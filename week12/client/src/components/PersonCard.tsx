@@ -1,4 +1,4 @@
-import React, {SetStateAction} from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,20 +6,17 @@ import Typography from "@mui/material/Typography";
 import {Person} from "../types";
 import {useMutation} from "@apollo/client";
 import DELETE_PERSON from "../mutations/DeletePerson";
+import GET_PEOPLE from "../queries/GetPeople";
 
 export default ({person}:{person:Person}) => {
 
-    const [mutateFunction, {data, loading, error}] = useMutation(DELETE_PERSON);
-
-    if (loading) return <>'Submitting ...'</>;
-    if (error) return <>`Submission error! ${error.message}`</>;
-
-    const onClick = (event:React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        if (window.confirm("Are you sure you want to delete this person?")) {
-            mutateFunction({variables:{deletePersonId:event.currentTarget.value}})
-        }
-    }
+    function DeletePerson({personId}:{personId:String}) {
+        const [deletePerson] = useMutation(DELETE_PERSON, {
+            variables: {deletePersonId: personId},
+            refetchQueries: [GET_PEOPLE, GET_PEOPLE]
+        });
+        return <button onClick={() => deletePerson()} value={person.id}>Delete Person</button>
+    };
 
     return (
         <div>
@@ -27,11 +24,11 @@ export default ({person}:{person:Person}) => {
                 display:"block",
                 width:"30vw",
                 transitionDuration: "0.3s",
-                height:"23vw",
+                height:"31vw",
                 border:"1px solid #ccc",
             }}>
                 <CardMedia
-                    sx={{height:140}}
+                    sx={{height:250}}
                     image={person.url}
                     title={person.name}
                 />
@@ -42,7 +39,7 @@ export default ({person}:{person:Person}) => {
                     <Typography gutterBottom variant="h6" component="div">
                         {person.age}
                     </Typography>
-                    <button onClick={onClick} value={person.id}>Delete Person</button>
+                    <DeletePerson personId={person.id} />
                 </CardContent>
             </Card>
         </div>

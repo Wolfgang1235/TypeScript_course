@@ -1,13 +1,13 @@
 import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {useMutation, useQuery} from "@apollo/client";
 import GET_ADDRESSES from "../queries/GetAddresses";
 import GET_PEOPLE from "../queries/GetPeople";
 import ADD_PERSON_TO_ADDRESS from "../mutations/AddPersonToAddress";
 import {Address, Person} from "../types";
-import {Simulate} from "react-dom/test-utils";
-import load = Simulate.load;
+import GET_ADDRESS from "../queries/GetAddress";
+import {ThemeContext} from "../contexts/ThemeContext";
 
 export default () => {
     const initialState = {
@@ -17,9 +17,13 @@ export default () => {
     const [state, setState] =
         useState(initialState);
 
+    const {isLight, light, dark} = useContext(ThemeContext);
+    const theme = isLight ? light : dark;
+
     const personQuery = useQuery(GET_PEOPLE);
     const addressQuery = useQuery(GET_ADDRESSES);
-    const [mutateFunction, {data, loading, error}] = useMutation(ADD_PERSON_TO_ADDRESS);
+    const [mutateFunction, {data, loading, error}] = useMutation(ADD_PERSON_TO_ADDRESS,
+        {refetchQueries:[GET_ADDRESS]});
 
     if (loading) return <>Submitting</>;
     if (error) return <>`Submission error! ${error.message}`</>;
@@ -50,14 +54,16 @@ export default () => {
             <form onSubmit={onSubmit}>
                 <FormControl sx={{m:1, minWidth:120}}>
                     <h3>Select Person</h3>
-                    <Select labelId="person-select" name="personId" onChange={onChange}>
+                    <Select labelId="person-select" name="personId" onChange={onChange}
+                            style={{background:theme.bg, color:theme.color}}>
                         {personQuery.data.people.map((person:Person)=>
                             <MenuItem key={person.id} value={person.id}>
                                 {person.name}
                             </MenuItem>)}
                     </Select>
                     <h3>Select Address</h3>
-                    <Select labelId="address-select" name="addressId" onChange={onChange}>
+                    <Select labelId="address-select" name="addressId" onChange={onChange}
+                            style={{background:theme.bg, color:theme.color}}>
                         {addressQuery.data.addresses.map((address:Address)=>
                             <MenuItem key={address.id} value={address.id}>
                                 {address.street}
