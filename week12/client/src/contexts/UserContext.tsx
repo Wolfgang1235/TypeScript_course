@@ -5,14 +5,14 @@ export const UserContext = createContext<{user:User,
     setUser: React.Dispatch<React.SetStateAction<User>>}>( {
     user:{
         isLoggedIn:true,
-        role:"test",
+        roles:["test"],
         name:"test"
     },setUser:()=>{}})
 
 export default function UserContextProvider(props:{children:JSX.Element}) {
     const [user, setUser] = useState<User>( {
         isLoggedIn:false,
-        role:"admin",
+        roles:["admin","super admin","user","janitor"],
         name:"Dave"
     });
 

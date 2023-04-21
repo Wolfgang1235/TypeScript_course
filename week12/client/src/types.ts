@@ -27,7 +27,7 @@ type Theme = {
 
 type User = {
     isLoggedIn: boolean;
-    role: string;
+    roles: string[];
     name: string;
 }
 

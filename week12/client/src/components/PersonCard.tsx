@@ -10,7 +10,6 @@ import GET_PEOPLE from "../queries/GetPeople";
 import {UserContext} from "../contexts/UserContext";
 
 export default ({person}:{person:Person}) => {
-
     const {user} = useContext(UserContext);
 
     function DeletePerson({personId}:{personId:String}) {
@@ -42,7 +41,7 @@ export default ({person}:{person:Person}) => {
                     <Typography gutterBottom variant="h6" component="div">
                         {person.age}
                     </Typography>
-                    {user.role==="admin" && user.isLoggedIn && <DeletePerson personId={person.id} />}
+                    {user.roles.includes("admin") && user.isLoggedIn && <DeletePerson personId={person.id} />}
                 </CardContent>
             </Card>
         </div>
