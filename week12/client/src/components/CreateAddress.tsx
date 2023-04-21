@@ -4,7 +4,7 @@ import CREATE_ADDRESS from "../mutations/CreateAddress";
 import GET_ADDRESSES from "../queries/GetAddresses";
 import {ThemeContext} from "../contexts/ThemeContext";
 
-export  default () => {
+export default () => {
     const initialState = {
         street:"",
         zip:0

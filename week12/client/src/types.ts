@@ -25,4 +25,10 @@ type Theme = {
     }
 };
 
-export type {Person, Address, Theme};
+type User = {
+    isLoggedIn: boolean;
+    role: string;
+    name: string;
+}
+
+export type {Person, Address, Theme, User};
