@@ -50,5 +50,8 @@ export default {
     },
     deletePerson: async (_parent:any, {id}:any)=> {
         await Person.findByIdAndDelete(id);
+        return {
+            id:id
+        };
     }
 }

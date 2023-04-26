@@ -1,7 +1,7 @@
 import "./App.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import WithUseQuery from "./components/WithUseQuery";
-import SimpleCards from "./components/SimpleCards";
+import WithUseQuery from "./components/AddressViewer";
+import PeopleViewer from "./components/PeopleViewer";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import Login from "./components/Login";
 import UserContextProvider from "./contexts/UserContext";
@@ -23,7 +23,7 @@ const App = () => {
                             <Login/>
                             <UserGreeting/>
                             <WithUseQuery/>
-                            <SimpleCards/>
+                            <PeopleViewer/>
                             <Admin/>
                         </div>
                     </UserContextProvider>

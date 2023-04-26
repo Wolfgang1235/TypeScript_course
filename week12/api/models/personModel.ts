@@ -12,7 +12,7 @@ const personSchema = new mongoose.Schema({
         minValue: [0, 'A person cannot be under 0 years old'],
     },
     url: String,
-    createAt: {
+    createdAt: {
         type: Date,
         default: Date.now,
     },

@@ -8,6 +8,7 @@ import {useMutation} from "@apollo/client";
 import DELETE_PERSON from "../mutations/DeletePerson";
 import GET_PEOPLE from "../queries/GetPeople";
 import {UserContext} from "../contexts/UserContext";
+import GET_ADDRESS from "../queries/GetAddress";
 
 export default ({person}:{person:Person}) => {
     const {user} = useContext(UserContext);
@@ -15,7 +16,7 @@ export default ({person}:{person:Person}) => {
     function DeletePerson({personId}:{personId:String}) {
         const [deletePerson] = useMutation(DELETE_PERSON, {
             variables: {deletePersonId: personId},
-            refetchQueries: [GET_PEOPLE, GET_PEOPLE]
+            refetchQueries: [GET_PEOPLE, GET_ADDRESS]
         });
         return <button onClick={() => deletePerson()} value={person.id}>Delete Person</button>
     };
@@ -41,7 +42,7 @@ export default ({person}:{person:Person}) => {
                     <Typography gutterBottom variant="h6" component="div">
                         {person.age}
                     </Typography>
-                    {user.roles.includes("admin") && user.isLoggedIn && <DeletePerson personId={person.id} />}
+                    {user.isLoggedIn && user.roles.includes("admin") && <DeletePerson personId={person.id} />}
                 </CardContent>
             </Card>
         </div>

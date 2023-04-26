@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 import {useQuery} from "@apollo/client";
-import GetAddress from "../queries/GetAddress";
-import {Address} from "../types";
+import GET_ADDRESS from "../queries/GetAddress";
 import DropDown from "./DropDown";
 import PersonCardGrid from "./PersonCardGrid";
 
 const AddressViewer = () => {
     const [addressId, setAddressId] = useState("");
 
-    const { loading, error, data} = useQuery(GetAddress, {
+    const { loading, error, data} = useQuery(GET_ADDRESS, {
         variables: { id: addressId},
     });
 

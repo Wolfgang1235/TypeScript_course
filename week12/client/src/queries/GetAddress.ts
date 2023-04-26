@@ -6,6 +6,7 @@ query GetAddress($id:ID){
     street
     zip
     people {
+      id
       name
       age
       url

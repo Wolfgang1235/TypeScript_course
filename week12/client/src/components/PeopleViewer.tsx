@@ -2,7 +2,7 @@ import {useQuery} from "@apollo/client";
 import PersonCardGrid from "./PersonCardGrid";
 import GET_PEOPLE from "../queries/GetPeople";
 
-const SimpleCards = () => {
+const PeopleViewer = () => {
     const {data, loading, error} = useQuery(GET_PEOPLE);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>
@@ -15,4 +15,4 @@ const SimpleCards = () => {
     )
 };
 
-export default SimpleCards;
+export default PeopleViewer;

@@ -23,12 +23,16 @@ const typeDefs = `#graphql
     address(id: ID): Address
   }
   
+  type DeletedPerson {
+    id: ID!
+  }
+  
   type Mutation {
     createPerson(input: PersonInput!): Person
     createAddress(input: AddressInput!): Address
     addPersonToAddress(input: PersonAndAddressInput!): Address
     removePersonFromAddress(input: PersonAndAddressInput!): Address
-    deletePerson(id: ID!): Boolean
+    deletePerson(id: ID!): DeletedPerson
   }
   
   input PersonInput {
