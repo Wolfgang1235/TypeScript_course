@@ -5,6 +5,7 @@ query GetPeople {
   people {
     id
     name
+    age
     url
   }
 }

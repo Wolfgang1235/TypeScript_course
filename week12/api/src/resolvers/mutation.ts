@@ -1,6 +1,6 @@
 import Person from "../../models/personModel";
 import Address from "../../models/addressModel";
-import { PersonType, AddressType, Context, Args} from "../types";
+import { PersonType, AddressType, Args} from "../types";
 
 
 export default {
@@ -28,6 +28,7 @@ export default {
 
         return populatedAddress;
     },
+
     removePersonFromAddress: async (_parent:never, {input}:Args) => {
         const person:any = await Person.findById(input.id);
         const address:any = await Address.findById(input.id);
@@ -48,10 +49,15 @@ export default {
 
         return updateAddress;
     },
-    deletePerson: async (_parent:any, {id}:any)=> {
+
+    deletePerson: async (_parent:never, {id}:Args)=> {
         await Person.findByIdAndDelete(id);
         return {
             id:id
         };
+    },
+    updatePerson: async (_parent:never, {id,input}:Args)=> {
+       const updatedPerson =  await Person.findByIdAndUpdate(id,input,{new:true});
+       return updatedPerson;
     }
 }

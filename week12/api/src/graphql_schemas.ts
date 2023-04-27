@@ -33,6 +33,7 @@ const typeDefs = `#graphql
     addPersonToAddress(input: PersonAndAddressInput!): Address
     removePersonFromAddress(input: PersonAndAddressInput!): Address
     deletePerson(id: ID!): DeletedPerson
+    updatePerson(id: ID!, input: UpdatePersonInput!): Person
   }
   
   input PersonInput {
@@ -51,6 +52,12 @@ const typeDefs = `#graphql
   input PersonAndAddressInput {
     personId: ID!
     addressId: ID!
+  }
+  
+  input UpdatePersonInput {
+    name: String
+    age: Int
+    url: String
   }
   
 `;
