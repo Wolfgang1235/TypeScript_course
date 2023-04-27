@@ -42,7 +42,7 @@ export default () => {
         setState(initialState);
     }
 
-    const onChange = (event: SelectChangeEvent):void => {
+    const onChange = (event: SelectChangeEvent) => {
         const name = event.target.name;
         const value = event.target.value;
         setState({...state,[name]:value});

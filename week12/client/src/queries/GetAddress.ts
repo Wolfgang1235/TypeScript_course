@@ -14,5 +14,4 @@ query GetAddress($id:ID){
   }
 }        
 `;
-
 export default GET_ADDRESS;

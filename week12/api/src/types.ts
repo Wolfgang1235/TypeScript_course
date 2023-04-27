@@ -25,9 +25,4 @@ type Args = {
     input:PersonType | AddressType;
 };
 
-// type Input = {
-//     id:string,
-//     input: PersonType["id"] | AddressType["id"]
-// }
-
 export type {PersonType, AddressType, Context, Args};

@@ -7,9 +7,11 @@ export default {
     createPerson: async (_parent:PersonType, {input}:Args) => {
         return await Person.create(input);
     },
+
     createAddress: async (_parent:AddressType, {input}:Args)=> {
         return await Address.create(input);
     },
+
     addPersonToAddress: async (_parent:never, {input}:any)=> {
         const person = await Person.findById(input.personId);
         const address = await Address.findById(input.addressId);
@@ -29,25 +31,25 @@ export default {
         return populatedAddress;
     },
 
-    removePersonFromAddress: async (_parent:never, {input}:Args) => {
-        const person:any = await Person.findById(input.id);
-        const address:any = await Address.findById(input.id);
+    removePersonFromAddress: async (_parent:never, {input}:any) => {
+        const person = await Person.findById(input.personId);
+        const address = await Address.findById(input.addressId);
 
-        if (person!.addresses.includes(input.id)) {
-
-            person!.addresses.splice(person!.addresses.indexOf(address), 1);
+        if (person!.addresses.includes(input.addressId)) {
+            person!.addresses.splice(person!.addresses.indexOf(input.addressId), 1);
             await person!.save();
         }
 
-        if (address!.people.includes(input.id)) {
+        if (address!.people.includes(input.personId)) {
 
-            address!.people.splice(address!.people.indexOf(person), 1);
+            address!.people.splice(address!.people.indexOf(input.personId), 1);
             await address!.save();
         }
 
-        const updateAddress = await address!.populate("people");
+        const populatedAddress = await address!.populate("people");
+        await person!.populate("addresses");
 
-        return updateAddress;
+        return populatedAddress;
     },
 
     deletePerson: async (_parent:never, {id}:Args)=> {
@@ -56,6 +58,7 @@ export default {
             id:id
         };
     },
+
     updatePerson: async (_parent:never, {id,input}:Args)=> {
        const updatedPerson =  await Person.findByIdAndUpdate(id,input,{new:true});
        return updatedPerson;

@@ -86,7 +86,6 @@ export default ({person}:{person:Person}) => {
                         {toggle ? <></> : <input id="url" type="text"
                                                  placeholder="url" onChange={onChange}/>}
                     </Typography>
-                    {/*<button onClick={()=>setToggle(!toggle)}>Set toggle</button>*/}
                     {user.isLoggedIn && user.roles.includes("admin") && <UpdatePerson personId={person.id}
                                                                                       personInput={personInput} />}
                     {user.isLoggedIn && user.roles.includes("admin") && <DeletePerson personId={person.id} />}
